@@ -3,9 +3,7 @@
 Code part for the DIY trap-cam by Mr Hackquarium :
 Raspberry pi + pi cam + Pir sensor + python
 
-This module is part code of Mr Hackquarium DIY trap-cam using a Raspberry pi
-with a pi camera and PIR sensor.
-This module is based on  python picamera.
+This module is based on python picamera.
 
 ## Documentation
 
