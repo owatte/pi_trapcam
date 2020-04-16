@@ -29,6 +29,6 @@ This module is based on  python picamera.
     * Real module with config file to publish on pypi
     * Docker version
 
-## Licence
+## License
 
     This script is licensed under GNU GPLv3
