@@ -2,7 +2,7 @@
 # @Date:   2020-04-15T09:00:46-04:00
 # @Email:  owatte@biolo.tech
 # @Last modified by:   user
-# @Last modified time: 2020-04-16T17:22:13-04:00
+# @Last modified time: 2020-04-16T20:31:06-04:00
 # @License: GPLv3
 # @Copyright: Biolotech
 """
@@ -37,7 +37,8 @@ VIDEO_ANNOTATION = True  # show text with date on capture
 VIDEO_FORMAT = 'h264'  # set type as 'h264' or 'mjpeg'
 VIDEO_RESOLUTION = (1296, 972)  # (1920, 1080), (640, 480) ...
 PICTURE_FORMAT = 'png'  # set type as 'jpeg', 'png', 'gif', 'bmp' ...
-PICTURE_RESOLUTION = (1296, 972)
+PICTURE_RESOLUTION = VIDEO_RESOLUTION
+
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(PIRSENSOR_GPIO, GPIO.IN)
@@ -62,7 +63,7 @@ while True:
             with picamera.PiCamera() as camera:
                 camera.resolution = VIDEO_RESOLUTION
                 camera.annotate_background = picamera.Color('black')
-                camera.annotate_text = now.strftime(VIDEO_ANNOTATION_STRFTIME)
+                camera.annotate_text = now.strftime(ANNOTATION_STRFTIME)
                 camera.start_recording(filename, format=VIDEO_FORMAT)
                 camera.wait_recording(VIDEO_DURATION)
                 camera.stop_recording()
@@ -70,9 +71,9 @@ while True:
             filename = set_filename(PICTURE_FORMAT)
             print(filename)
             with picamera.PiCamera() as camera:
-                camera.resolution = VIDEO_RESOLUTION
+                camera.resolution = PICTURE_RESOLUTION
                 camera.start_preview()
                 time.sleep(2)
-                camera.annotate_text = now.strftime(VIDEO_ANNOTATION_STRFTIME)
+                camera.annotate_text = now.strftime(ANNOTATION_STRFTIME)
                 camera.capture(filename, format=PICTURE_FORMAT)
     time.sleep(0.1)
